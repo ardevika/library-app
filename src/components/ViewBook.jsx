@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NavBar from './NavBar'
 
 const ViewBook = () => {
+    const [data,changeData]=useState(
+
+        [
+            {"slno": 1,"Name":"devika","author":"eee","price":1},
+           
+            {"slno": 1,"Name":"degfjha","author":"eee","price":1},
+           
+            {"slno": 1,"Name":"dekjhgfika","author":"eee","price":1}
+          
+        ]
+    )
     return (
         <div>
             <NavBar/>
@@ -20,25 +31,20 @@ const ViewBook = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>novel</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            
-                                        <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
+                                        {
+                                        data.map(
+                                            (value,index) => {
+
+                                              return  <tr>
+                                                <th scope="row">{value.slno}</th>
+                                                <td>{value.Name}</td>
+                                                <td>{value.author}</td>
+                                                <td>{value.price}</td>
+                                            </tr>
+                                            }
+                                        )}
+                                       
+                                        
                                     </tbody>
                                 </table>
                             </div>
