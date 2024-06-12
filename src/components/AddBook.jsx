@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar'
+import axios from 'axios'
 
 const AddBook = () => {
     const[data,setData]=useState(
         {
           "Name"  :"",
-          "Description":"",
+          "discription":"",
           "pulisher":"",
+          "year":"",
           "Distributor":""
 
 
@@ -17,6 +19,22 @@ const AddBook = () => {
     }
     const readValue=()=>{
         console.log(data)
+        axios.post("http://localhost:4426/add",data).then(
+            (response)=>{
+                console.log(response.data)
+            if(response.data.status=="success") {
+                alert("successfull")
+
+            }
+            else{
+                alert("error")
+            }
+                console.log(response.data)
+                setData(response.data)
+
+            
+            }
+        ).catch()
     }
     return (
         <div>
@@ -39,14 +57,14 @@ const AddBook = () => {
                             </div>
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <label htmlFor="" className="form-label">Description</label>
-                                <textarea name="" id="" className="form-control" name='Description' value={data.Description} onChange={inputHandler}></textarea>
+                                <input type="text" className="form-control" name='discription' value={data.discription} onChange={inputHandler} />
                             </div>
                             <div className="col col-12 col-sm-6 col-md-16 col-lg-6 col-xl-6 col-xxl-6">
                                 <label htmlFor="" className="form-label">Distributor Name</label>
                                 <input type="text" className="form-control" name='Distributor' value={data.Distributor} onChange={inputHandler} />
                             </div>
                             <div className="col col-12 col-sm-6 col-md-16 col-lg-6 col-xl-6 col-xxl-6">
-                                <label htmlFor="" className="form-label">pulisher</label>
+                                <label htmlFor="" className="form-label">publisher</label>
                                 <input type="text" className="form-control" name='pulisher' value={data.pulisher} onChange={inputHandler} />
                             </div>
                             <div className="col col-12 col-sm-6 col-md-16 col-lg-6 col-xl-6 col-xxl-6">
